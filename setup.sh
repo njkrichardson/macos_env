@@ -45,17 +45,13 @@ HARDWARE_NAME=`uname -m`;
 echo "Configuring shell..." 
 /bin/bash -c "$(curl -fsSL ${ZSH_URL})"
 
-# --- package management 
-echo "Obtaining package manager..."
-/bin/bash -c "$(curl -fsSL ${BREW_URL})"
+# --- package management (requires sudo)
+if [ $ROOT == 1 ]
+    then 
+        echo "Obtaining package manager..."; 
+        /bin/bash -c "$(curl -fsSL ${BREW_URL})"; 
+    else 
+        echo "Unable to obtain package manager, run as sudo"; 
+fi 
 
-
-
-
-
-
-
-
-
-
-
+# --- neovim 
